@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter App</title>
+    <style>
+      html {
+        font-size: 62.5%;
+        box-sizing: border-box;
+      }
+      body {
+        font-size: 1.6rem;
+        line-height: 1;
+        font-weight: 400;
+        color: #1c1917;
+        display: flex;
+        height: 100vh;
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: inherit;
+      }
+      .container {
+        margin: auto;
+        flex-basis: 40rem;
+        background: #e4e4e7;
+        padding: 5rem 10rem;
+        text-align: center;
+        border: 2px solid #22c55e;
+      }
+      .counter-heading {
+        margin-bottom: 2.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.4rem;
+        font-size: 5rem;
+      }
+      .counter {
+        width: 100%;
+        background: #4ed17e;
+        font-size: 5rem;
+        padding: 1rem 0;
+        margin-bottom: 1rem;
+      }
+      .counter-actions {
+        display: flex;
+        gap: 2px;
+      }
+      .counter-actions button {
+        flex: 1;
+        font-size: 2rem;
+        font-weight: 600;
+        color: inherit;
+        padding: 0.5rem;
+        border: 2px solid #4ed17e;
+        transition: 0.5s;
+      }
+      .counter-actions button:hover {
+        background: #4ed17e;
+      }
+
+      /* media queries */
+      @media (max-width: 31.25em) {
+        .container {
+          flex: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="counter-heading">Counter</h1>
+      <div class="counter">0</div>
+      <div class="counter-actions">
+        <button class="btn-plus">+</button>
+        <button class="btn-minus">-</button>
+        <button class="btn-reset">Reset</button>
+      </div>
+    </div>
+    <script>
+      // variables
+      const counterDiv = document.querySelector(".counter");
+      const btnPlus = document.querySelector(".btn-plus");
+      const btnMinus = document.querySelector(".btn-minus");
+      const btnReset = document.querySelector(".btn-reset");
+
+      // get counter value
+      function getCounterValue() {
+        const counterValue = parseInt(counterDiv.textContent);
+        return counterValue;
+      }
+
+      // counter handler
+      function counterHandler(isIncreasing) {
+        const counterValue = getCounterValue();
+        if (isIncreasing) {
+          counterDiv.textContent = counterValue + 1;
+        } else {
+          if (counterValue > 0) {
+            counterDiv.textContent = counterValue - 1;
+          }
+        }
+      }
+
+      // increment handler
+      btnPlus.addEventListener("click", function () {
+        counterHandler(true);
+      });
+
+      // decrement handler
+      btnMinus.addEventListener("click", function () {
+        counterHandler(false);
+      });
+
+      // reset handler
+      btnReset.addEventListener("click", function () {
+        counterDiv.textContent = 0;
+      });
+    </script>
+  </body>
+</html>
+<!-- =========end========= -->
